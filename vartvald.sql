@@ -13,15 +13,13 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`username`, `password`, `userid`, `userlevel`, `email`, `timestamp`) VALUES
-('Administratorius', '16c354b68848cdbd8f54a226a0a55b21', 'a2fe399900de341c39c632244eaf8483', 9, 'demo@ktu.lt', '2018-02-16 16:51:21'),
-('rimas', 'c2acd92812ef99acd3dcdbb746b9a434', '689e5b2971577d707becb97405ede951', 9, 'rimas@litnet.lt', '2024-07-02 20:49:33'),
-('jonas', '64067822105b320085d18e386f57d89a', '9c5ddd54107734f7d18335a5245c286b', 255, 'rimas@litnet.lt', '2017-05-09 17:10:37'),
-('pranas', '16c354b68848cdbd8f54a226a0a55b21', 'aa69001f0ba493bed7dddfd1cdb06591', 4, 'pranas@ltu.ee', '2024-07-02 18:48:36'),
-('kostas', '1c37511487d38c3ebc4c59650ce2d65a', '69986045e0925262d43addddaf76094f', 5, 'eeee@ll.lt', '2018-02-16 16:04:35'),
-('stud', 'c2acd92812ef99acd3dcdbb746b9a434', 'de2cde3560412df8be3d2773e9f1a8b3', 4, 'stud@ktu.lt', '2024-07-03 11:42:12');
+-- Administrator (level 9)
+('adminas', 'f8b8c5d5e8e9e3f3b5c8a8f5e9e8', 'ad1e8f5e9e8c5d5f8b8c5d5e8e9e3f3', 9, 'admin@test.lt', NOW()),
+-- Specialist (level 5)
+('specialistas', '5c8f5e9e8c5d5f8b8c5d5e8e9e3f3b', 'sp1e8f5e9e8c5d5f8b8c5d5e8e9e3f3', 5, 'specialistas@test.lt', NOW()),
+-- Client (level 4)
+('klientas', 'b8c5d5e8e9e3f3b5c8f5e9e8c5d5f8', 'cl1e8f5e9e8c5d5f8b8c5d5e8e9e3f3', 4, 'klientas@test.lt', NOW());
 
--- Indexes for table `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userid`);
 
