@@ -1,0 +1,57 @@
+<?php
+//nustatymai.php - Advokatų kontorų užsakymų vykdymo sistema
+
+// Database nustatymai
+if (!defined('DB_SERVER')) define("DB_SERVER", "localhost");
+if (!defined('DB_USER')) define("DB_USER", "your_database_user");
+if (!defined('DB_PASS')) define("DB_PASS", "your_database_password");
+if (!defined('DB_NAME')) define("DB_NAME", "vartvald");
+if (!defined('TBL_USERS')) define("TBL_USERS", "users");
+
+// Vartotojų profiliai pagal jūsų užduotį
+$user_roles=array(
+	"Administratorius"=>"9",
+	"Specialistas"=>"5",
+	"Klientas"=>"4",
+	"Vartotojas"=>"1"
+);   
+// automatiškai galioja ir vartotojas "guest", rolė "Svečias", userlevel=0
+
+if (!defined('DEFAULT_LEVEL')) define("DEFAULT_LEVEL","Klientas");
+if (!defined('ADMIN_LEVEL')) define("ADMIN_LEVEL","Administratorius");
+if (!defined('UZBLOKUOTAS')) define("UZBLOKUOTAS","255");
+
+$uregister="self";  // klientai gali patys registruotis
+
+// Operacijų meniu pagal use case diagramą
+// Formatas: [pavadinimas, [leisti šioms rolėms], failas]
+$usermenu=array(
+	// Visiems prisijungusiems (išskyrus specialistus)
+	["Paslaugų sąrašas",[0,1,4,9],"paslaugos.php"],
+	["DUK (klausimai)",[0,1,4,5,9],"duk.php"],
+	
+	// Tik klientams (ne specialistams, ne admin)
+	["Pateikti užsakymą",[4],"uzsakymas_naujas.php"],
+	["Mano užsakymai",[4],"uzsakymai_sarasas.php"],
+	
+	// Tik specialistams (ne admin)
+	["Darbo laikas (valdyti)",[5],"darbo_laikas.php"],
+	["Mano kontora",[5],"kontora_specialistui.php"],
+	["Mano paslaugos",[5],"paslaugos_specialistui.php"],
+	["Peržiūrėti užsakymus",[5,9],"uzsakymai_visi.php"],
+	["Klausimai (valdyti)",[5,9],"duk_valdyti.php"],
+	["Specialistų statistika",[5],"specialistu_statistika.php"],
+	
+	// Tik administratoriui (papildoma)
+	["Užsakymų statistika",[9],"statistika.php"],
+	["Paslaugų valdymas",[9],"paslaugos_valdyti.php"],
+); 
+
+// Sistemos informacija
+if (!defined('SYSTEM_NAME')) define("SYSTEM_NAME", "Advokatų kontorų tinklas");
+if (!defined('SYSTEM_SUBTITLE')) define("SYSTEM_SUBTITLE", "Užsakymų valdymo sistema");
+if (!defined('SYSTEM_AUTHOR')) define("SYSTEM_AUTHOR", "Akvile Sykaite");
+
+// El. pašto nustatymai
+if (!defined('EMAIL_FROM_NAME')) define("EMAIL_FROM_NAME", "Kontorų tinklas");
+if (!defined('EMAIL_FROM_ADDR')) define("EMAIL_FROM_ADDR", "info@kontoru-tinklas.lt");
