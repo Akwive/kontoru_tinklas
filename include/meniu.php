@@ -4,6 +4,8 @@
 if (!isset($_SESSION)) { header("Location: logout.php");exit;}
 
 include_once("include/nustatymai.php");
+// Auto-create missing DB tables on first load (local/dev convenience)
+include_once("include/db_init.php");
 
 $user=$_SESSION['user'];
 $userlevel=$_SESSION['ulevel'];
